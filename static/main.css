@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    margin: auto;
+    padding: 1em 0 2em;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+}
+
+main {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+}
+
+main > h2 {
+    padding: 0 0 1.5em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.label-box {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+.input-box {
+    max-width: 400px;
+    padding: 5px;
+    text-align: center;
+    margin: 10px auto;
+}
+
+input {
+    width: 80%;
+    padding: 1em;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.button-box {
+    text-align: center;
+}
+
+button {
+    padding: 0.5em 1.5em;
+    font-size: 1.2em;
+    font-family: 'Caveat', cursive;
+    letter-spacing: 2px;
+    color: blue;
+    font-weight: 600;
+}

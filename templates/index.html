@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register to view books<br>
+       or <a href={{ url_for('signIn') }}>Sign in</a>
+{% endblock %}
+
+{% block body %}
+    <form action={{ url_for('index') }} method="post">
+        <div class="label-box">
+            <label for="username">Name</label>
+        </div>
+        <div class="input-box">
+            <input type="text" name="username" id="username">
+        </div>
+        <div class="label-box">
+            <label for="password">Password</label>
+        </div>
+        <div class="input-box">
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="label-box">
+            <label for="confirm-password">Confirm password</label>
+        </div>
+        <div class="input-box">
+            <input type="password" name="confirm-password" id="confirm-password">
+        </div>
+        <div class="button-box">
+            <button>Register</button>
+        </div>
+    </form>
+{% endblock %}
