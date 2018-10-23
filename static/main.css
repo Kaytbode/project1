@@ -25,6 +25,7 @@ main > h2 {
 
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .label-box {
@@ -64,4 +65,5 @@ button {
     letter-spacing: 2px;
     color: blue;
     font-weight: 600;
+    cursor: pointer;
 }
