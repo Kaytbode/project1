@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, request
+from flask import Flask, session, render_template, request, redirect, url_for, flash
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -25,6 +25,16 @@ db = scoped_session(sessionmaker(bind=engine))
 def index():
     return render_template('index.html')
 
-@app.route("/signIn")
+@app.route("/signIn", methods=["GET", "POST"])
 def signIn():
-    return render_template('signIn.html')
+    if request.method == 'POST':
+        password = request.form.get('password')
+        confirmPw = request.form.get('confirmPassword')
+        if password == confirmPw:
+            message = 'You successfully registered!'
+            return render_template('signIn.html', message=message)
+        else:
+            flash('The passwords you entered do not match!')
+            return redirect(url_for('index'))
+
+    return render_template('signIn.html', message='Have you registered ?')
