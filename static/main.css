@@ -28,6 +28,13 @@ a {
     cursor: pointer;
 }
 
+.flashes {
+    color: red;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 0;
+}
+
 .label-box {
     text-align: center;
     max-width: 400px;
