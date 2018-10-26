@@ -18,8 +18,8 @@ Session(app)
 
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sessionmaker(bind=engine))
-
+session = scoped_session(sessionmaker(bind=engine))
+db = session()
 
 @app.route("/")
 def index():
@@ -28,9 +28,13 @@ def index():
 @app.route("/signIn", methods=["GET", "POST"])
 def signIn():
     if request.method == 'POST':
+        username = request.form.get('username')
         password = request.form.get('password')
         confirmPw = request.form.get('confirmPassword')
         if password == confirmPw:
+            db.execute("INSERT INTO users(username, passwd) VALUES(:username, :passwd)", 
+                {'username': username, 'passwd': password})
+            db.commit()
             message = 'You successfully registered!'
             return render_template('signIn.html', message=message)
         else:
@@ -38,3 +42,23 @@ def signIn():
             return redirect(url_for('index'))
 
     return render_template('signIn.html', message='Have you registered ?')
+
+@app.route("/Books", methods=["GET", "POST"])
+def books():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+       
+        user = db.execute("SELECT username, passwd from users WHERE username = :username",
+                {"username": username}).fetchone()
+        db.commit()
+        print(user)
+        if not user:
+            flash('User not registered')
+            return redirect(url_for('signIn'))
+
+        if user.passwd == password:
+            return render_template('books.html')
+        else:
+            flash('Password is incorrect!')
+            return redirect(url_for('signIn'))
