@@ -16,7 +16,6 @@ def main():
     for isbn, title, author, year in reader:
         db.execute("INSERT INTO books(isbn, title, author, year) VALUES(:isbn, :title, :author, :year)",
             {'isbn': isbn, 'title': title, 'author': author, 'year': year})
-        print(f"{isbn} {title} {author} {year}")
     db.commit()
     
     print('Insertions into database completed')

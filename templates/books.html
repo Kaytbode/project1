@@ -1,9 +1,21 @@
 {% extends "layout.html" %}
 
 {% block title %}
-   Hey new books
+   Search for books
 {% endblock %}
 
 {% block body %}
-    where are they?
+    <form action={{ url_for('books') }} role="search" method="post">
+        <div class="search-box">
+            <input type="search" name="search" id="search" aria-label="Search for a book" required>
+            <button class="search-button" name="searchBook">Find Book</button>
+        </div>
+    </form>
+    <div class="book-list">
+        <ul>
+            {% for book in books %}
+            <li><a href="{{ book.isbn }}">{{ book.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

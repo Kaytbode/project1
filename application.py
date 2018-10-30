@@ -31,6 +31,7 @@ def signIn():
         username = request.form.get('username')
         password = request.form.get('password')
         confirmPw = request.form.get('confirmPassword')
+
         if password == confirmPw:
             db.execute("INSERT INTO users(username, passwd) VALUES(:username, :passwd)", 
                 {'username': username, 'passwd': password})
@@ -43,16 +44,17 @@ def signIn():
 
     return render_template('signIn.html', message='Have you registered ?')
 
-@app.route("/Books", methods=["GET", "POST"])
+@app.route("/Books", methods=["POST"])
 def books():
-    if request.method == 'POST':
+    if 'signIn' in request.form:
         username = request.form.get('username')
         password = request.form.get('password')
        
-        user = db.execute("SELECT username, passwd from users WHERE username = :username",
+        user = db.execute("SELECT * FROM users WHERE username=:username",
                 {"username": username}).fetchone()
+        
         db.commit()
-        print(user)
+
         if not user:
             flash('User not registered')
             return redirect(url_for('signIn'))
@@ -62,3 +64,17 @@ def books():
         else:
             flash('Password is incorrect!')
             return redirect(url_for('signIn'))
+    
+    elif 'searchBook' in request.form:
+        book = request.form.get('search')
+        book = ' '.join(chr.capitalize() for chr in book.split())
+    
+        books = db.execute("SELECT * FROM books WHERE isbn like :book OR title like :book OR author like :book",
+            {'book' : '%'+book+'%'}).fetchall()
+        db.commit()
+
+        if not books:
+            flash('Book not found')
+            return render_template('books.html')
+        else:
+            return render_template('books.html', books= books)

@@ -74,3 +74,14 @@ button {
     font-weight: 600;
     cursor: pointer;
 }
+
+/* books.html */
+.search-box {
+    max-width: 700px;
+    margin: 0 auto 20px;
+}
+
+.search-button {
+    padding: 0.8em;
+    margin-top: 10px;
+}
