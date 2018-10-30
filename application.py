@@ -78,3 +78,10 @@ def books():
             return render_template('books.html')
         else:
             return render_template('books.html', books= books)
+
+@app.route("/Books/<isbn>")
+def book(isbn):
+    book = db.execute("SELECT * FROM books WHERE isbn=:isbn", {'isbn': isbn}).fetchone()
+    db.commit()
+
+    return render_template('book.html', book= book)

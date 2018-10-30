@@ -14,7 +14,7 @@
     <div class="book-list">
         {% for book in books %}
         <div class="book-box">
-            <a href="{{ book.isbn }}">{{ book.title }}</a>
+            <a href={{ url_for('book', isbn = book.isbn) }}>{{ book.title }}</a>
         </div>
         {% endfor %}
     </div>
