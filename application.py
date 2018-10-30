@@ -70,7 +70,7 @@ def books():
         book = ' '.join(chr.capitalize() for chr in book.split())
     
         books = db.execute("SELECT * FROM books WHERE isbn like :book OR title like :book OR author like :book",
-            {'book' : '%'+book+'%'}).fetchall()
+            {'book' : f'%{book}%'}).fetchall()
         db.commit()
 
         if not books:
