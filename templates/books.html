@@ -12,10 +12,10 @@
         </div>
     </form>
     <div class="book-list">
-        <ul>
-            {% for book in books %}
-            <li><a href="{{ book.isbn }}">{{ book.title }}</a></li>
-            {% endfor %}
-        </ul>
+        {% for book in books %}
+        <div class="book-box">
+            <a href="{{ book.isbn }}">{{ book.title }}</a>
+        </div>
+        {% endfor %}
     </div>
 {% endblock %}

@@ -85,3 +85,26 @@ button {
     padding: 0.8em;
     margin-top: 10px;
 }
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-box {
+    width: 100px;
+    background-color: #ddd;
+    margin: 5px;
+    padding: 5px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.book-box a {
+    color: black;
+}
+
+.book-box a:hover {
+    color: #ddd;
+    background-color: black;
+}
