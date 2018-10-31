@@ -108,3 +108,22 @@ button {
     color: #ddd;
     background-color: black;
 }
+
+.book {
+    max-width: 400px;
+    margin: auto;
+    background-color: #ddd;
+    padding: 5px;
+    font-size: 1.5em;
+}
+
+.review-button {
+    margin: 10px 0;
+    border: none;
+    background-color: inherit;
+    font-size: 1.5em;
+}
+
+.review-button:hover {
+    color: black;
+}

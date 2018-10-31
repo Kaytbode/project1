@@ -1,12 +1,23 @@
 {% extends "layout.html" %}
 
 {% block title %}
-   <h1>{{ book.title }}</h1>
+   {{ book.title }}
 {% endblock %}
 
 {% block body %}
     <div class="book">
-         {{ book.author }}
-         {{ book.isbn }}
+        <p>
+            Author - {{ book.author }}
+        </p>
+        <p>
+            ISBN - {{ book.isbn }}
+        </p>
+        <p>
+            Year - {{ book.year }}
+        </p>
+    </div>
+    <button class="review-button">Post Reviews</button>
+    <div>
+        
     </div>
 {% endblock %}
