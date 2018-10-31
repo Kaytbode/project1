@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 
+{% block user %}
+    <h2>{{ username }}</h2>
+    <a class="sign-out" href={{ url_for('signOut') }}>Sign out</a>
+{% endblock %}
+
 {% block title %}
    Search for books
 {% endblock %}

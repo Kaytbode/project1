@@ -14,6 +14,28 @@ h1 {
     letter-spacing: 2px;
 }
 
+.user {
+    display: flex;
+    justify-content: space-around;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #555;
+}
+
+.sign-out {
+    color: rebeccapurple;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.sign-out:hover {
+    color: black;
+}
+
 main {
     text-align: center;
     font-family: 'Caveat', cursive;
@@ -21,6 +43,7 @@ main {
 
 main > h2 {
     padding: 0 0 1.5em;
+    letter-spacing: 2px;
 }
 
 a {
@@ -115,6 +138,7 @@ button {
     background-color: #ddd;
     padding: 5px;
     font-size: 1.5em;
+    letter-spacing: 2px;
 }
 
 .review-button {

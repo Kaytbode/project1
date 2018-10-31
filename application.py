@@ -18,8 +18,8 @@ Session(app)
 
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
-session = scoped_session(sessionmaker(bind=engine))
-db = session()
+session_db = scoped_session(sessionmaker(bind=engine))
+db = session_db()
 
 @app.route("/")
 def index():
@@ -60,7 +60,8 @@ def books():
             return redirect(url_for('signIn'))
 
         if user.passwd == password:
-            return render_template('books.html')
+            session['username'] = username
+            return render_template('books.html', username=username)
         else:
             flash('Password is incorrect!')
             return redirect(url_for('signIn'))
@@ -77,11 +78,16 @@ def books():
             flash('Book not found')
             return render_template('books.html')
         else:
-            return render_template('books.html', books= books)
+            return render_template('books.html', books= books, username=session['username'])
 
 @app.route("/Books/<isbn>")
 def book(isbn):
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn", {'isbn': isbn}).fetchone()
     db.commit()
 
-    return render_template('book.html', book= book)
+    return render_template('book.html', book= book, username=session['username'])
+
+@app.route("/SignOut")
+def signOut():
+    session.pop('username', None)
+    return redirect(url_for('index'))
