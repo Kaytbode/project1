@@ -110,3 +110,14 @@ def book(isbn):
 def signOut():
     session.pop('username', None)
     return redirect(url_for('index'))
+
+@app.route("/api/<isbn>")
+def api(isbn):
+    book = db.execute("SELECT * FROM books WHERE isbn=:isbn", {'isbn': isbn}).fetchone()
+    db.commit()
+
+    count = db.execute("SELECT COUNT(book) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
+    score = db.execute("SELECT AVG(rating) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
+    db.commit()
+
+    return render_template('api.html', book=book, count=count[0][0], score=score[0][0])

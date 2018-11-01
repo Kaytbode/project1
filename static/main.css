@@ -248,3 +248,7 @@ span {
     background-color: #363636;
     opacity: 0.8;
 }
+
+.api {
+    font-size: 2em;
+}
