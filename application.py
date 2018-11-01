@@ -1,4 +1,5 @@
 import os
+import requests
 
 from flask import Flask, session, render_template, request, redirect, url_for, flash
 from flask_session import Session
@@ -96,7 +97,14 @@ def book(isbn):
     reviews = db.execute("SELECT * FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
     db.commit()
 
-    return render_template('book.html', book= book, reviews=reviews, username=session['username'])
+    # fetch data from goodreads 
+    api_key = '4AcUrYrpY3jO72H6fnP8MQ'
+    api_url = f'https://www.goodreads.com/book/review_counts.json?isbns={isbn}&key={api_key}'
+    req = requests.get(api_url)
+    good_reads = req.json()['books'][0]
+    
+    return render_template('book.html', book= book, ratings = good_reads['ratings_count'], avg_rating=good_reads['average_rating'],
+    reviews=reviews, username=session['username'])
 
 @app.route("/SignOut")
 def signOut():
