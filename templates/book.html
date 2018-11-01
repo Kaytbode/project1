@@ -20,4 +20,23 @@
     <div>
         
     </div>
+    <div class="modal" role="dialog">
+        <form id="review-form"> 
+          <h3>Add Review</h3>
+          <hr>
+          <div>
+              <label for="rating">Rating</label>
+              <input type="number" name="rating" value="1" min="1" max="5" id="rating" required>
+          </div>
+          <div>
+              <label for="comment">Comment</label>
+              <textarea id="comment" name="comment" rows="5" required></textarea>
+          </div>
+          <div class="modal-buttons">
+              <button type = "button" class="close-modal">Close</button>
+              <button type="submit" class="submit">Submit</button>
+          </div> 
+        </form>
+      </div>
+    <div class="overlay"></div>
 {% endblock %}
