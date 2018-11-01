@@ -109,7 +109,8 @@ button {
     margin-top: 10px;
 }
 
-.book-list {
+.book-list, 
+.reviews {
     display: flex;
     flex-wrap: wrap;
 }
@@ -139,6 +140,27 @@ button {
     padding: 5px;
     font-size: 1.5em;
     letter-spacing: 2px;
+}
+/* ==== Reviews ==== */
+.review-box {
+    width: 30%;
+    background-color: #ddd;
+    margin: 5px;
+    padding: 5px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+span {
+    margin: 0 10px;
+    font-size: 1.3em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.rating {
+    color: #3d2802;
 }
 
 .review-button {

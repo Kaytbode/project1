@@ -80,12 +80,23 @@ def books():
         else:
             return render_template('books.html', books= books, username=session['username'])
 
-@app.route("/Books/<isbn>")
+@app.route("/Books/<isbn>", methods=["GET", "POST"])
 def book(isbn):
+    if request.method == 'POST':
+        rating = request.form.get('rating')
+        comment = request.form.get('comment')
+
+        db.execute("INSERT INTO reviews(username, book, comment, rating) VALUES(:username, :book, :comment, :rating)",
+            {'username': session['username'], 'book': isbn, 'comment': comment, 'rating': rating})
+        db.commit()
+
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn", {'isbn': isbn}).fetchone()
     db.commit()
 
-    return render_template('book.html', book= book, username=session['username'])
+    reviews = db.execute("SELECT * FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
+    db.commit()
+
+    return render_template('book.html', book= book, reviews=reviews, username=session['username'])
 
 @app.route("/SignOut")
 def signOut():
