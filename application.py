@@ -45,6 +45,11 @@ def signIn():
 
     return render_template('signIn.html', message='Have you registered ?')
 
+@app.route("/SignOut")
+def signOut():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
 @app.route("/Books", methods=["POST"])
 def books():
     if 'signIn' in request.form:
@@ -106,18 +111,17 @@ def book(isbn):
     return render_template('book.html', book= book, ratings = good_reads['ratings_count'], avg_rating=good_reads['average_rating'],
     reviews=reviews, username=session['username'])
 
-@app.route("/SignOut")
-def signOut():
-    session.pop('username', None)
-    return redirect(url_for('index'))
-
 @app.route("/api/<isbn>")
 def api(isbn):
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn", {'isbn': isbn}).fetchone()
     db.commit()
 
-    count = db.execute("SELECT COUNT(book) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
-    score = db.execute("SELECT AVG(rating) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
-    db.commit()
+    if not book:
+        return render_template('page404.html', message=404)
+    else:
+        count = db.execute("SELECT COUNT(book) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
+        score = db.execute("SELECT AVG(rating) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
+        db.commit()
 
     return render_template('api.html', book=book, count=count[0][0], score=score[0][0])
+

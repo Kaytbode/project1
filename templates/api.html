@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="api">
+       {<br>
+        "title": {{ book.title }},<br>
+        "author": {{ book.author }},<br>
+        "year": {{ book.year }},<br>
+        "isbn": {{ book.isbn }},<br>
+        "review_count": {{ count }},<br>
+        "average_score": {{ score }}<br>
+        }
+    </div>
+{% endblock %}
