@@ -108,7 +108,7 @@ def book(isbn):
     req = requests.get(api_url)
     good_reads = req.json()['books'][0]
     
-    return render_template('book.html', book= book, ratings = good_reads['ratings_count'], avg_rating=good_reads['average_rating'],
+    return render_template('book.html', book= book, ratings = good_reads['work_ratings_count'], avg_rating=good_reads['average_rating'],
     reviews=reviews, username=session['username'])
 
 @app.route("/api/<isbn>")
