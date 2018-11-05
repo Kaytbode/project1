@@ -103,7 +103,7 @@ def book(isbn):
     db.commit()
 
     # fetch data from goodreads 
-    api_key = '4AcUrYrpY3jO72H6fnP8MQ'
+    api_key = os.getenv("GOODREADS_KEY") #'4AcUrYrpY3jO72H6fnP8MQ'
     api_url = f'https://www.goodreads.com/book/review_counts.json?isbns={isbn}&key={api_key}'
     req = requests.get(api_url)
     good_reads = req.json()['books'][0]
