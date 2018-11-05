@@ -1,7 +1,7 @@
 import os
 import requests
 
-from flask import Flask, session, render_template, request, redirect, url_for, flash
+from flask import Flask, session, render_template, request, redirect, url_for, flash, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -162,6 +162,9 @@ def book(isbn):
 
 @app.route("/api/<isbn>")
 def api(isbn):
+
+    """ API access """
+
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn", {'isbn': isbn}).fetchone()
     db.commit()
 
@@ -169,8 +172,19 @@ def api(isbn):
         return render_template('page404.html', message=404)
     else:
         count = db.execute("SELECT COUNT(book) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
+        db.commit()
         score = db.execute("SELECT AVG(rating) FROM reviews WHERE book=:book", {'book':isbn}).fetchall()
         db.commit()
 
-    return render_template('api.html', book=book, count=count[0][0], score=score[0][0])
+    avg_score = float(score[0][0])
+    data = {
+        'title': book.title,
+        'author': book.author,
+        'year': book.year,
+        'isbn': book.isbn,
+        'review_count': count[0][0],
+        'average_score': avg_score
+        }
+
+    return jsonify(data)
 
