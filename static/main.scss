@@ -1,0 +1,277 @@
+$fontStackOne: 'Quicksand', sans-serif;
+$fontStackTwo: 'Caveat', cursive;
+$textAlign: center;
+$LetterSpc: 2px;
+$fontWeight: 600;
+$bookColor: rgb(78, 78, 3);
+
+%styleSharedOne {
+    text-align: $textAlign;
+    max-width: 400px;
+}
+
+%styleShareTwo {
+    font-weight: $fontWeight;
+    letter-spacing: $LetterSpc;
+}
+
+%styleShareThree {
+    background-color: #ddd;
+    padding: 5px;
+}
+
+%styleShareFour {
+    font-size: 1.2em;
+    font-weight: $fontWeight;
+}
+
+
+body {
+    margin: 0;
+}
+
+
+header {
+    text-align: $textAlign;
+    margin: auto;
+    padding: 1em 0 2em;
+    font-family: $fontStackOne;
+
+    h1 {
+        font-size: 2.5em;
+        letter-spacing: $LetterSpc;
+    }
+
+    .user {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    h2 {
+        @extend %styleShareFour;
+        margin: 0;
+        color: #555;
+    }
+
+    .sign-out {
+        @extend %styleShareFour;
+        color: rebeccapurple;
+    }
+
+    .sign-out:hover {
+        color: black;
+    }
+}
+
+
+main {
+    text-align: $textAlign;
+    font-family: $fontStackTwo;
+
+    h2 {
+        padding: 0 0 1.5em;
+        letter-spacing: $LetterSpc;
+    }
+
+    .flashes {
+        @extend %styleShareFour;
+        color: red;
+        margin-top: 0;
+    }
+
+    .label-box {
+        @extend %styleSharedOne;
+        margin: auto;
+        font-size: 1.2em;
+    }
+    
+    .input-box {
+        @extend %styleSharedOne;
+        padding: 5px;
+        margin: 10px auto;
+    }
+    
+    .button-box {
+        text-align: $textAlign;
+    }
+
+    .search-box {
+        max-width: 700px;
+        margin: 0 auto 20px;
+    }
+    
+    .search-button {
+        padding: 0.8em;
+        margin-top: 10px;
+    }
+    
+    .book-list, 
+    .reviews {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .book-box {
+        @extend %styleShareThree;
+        width: 100px;
+        margin: 5px;
+        font-family: $fontStackOne;
+        font-weight: $fontWeight;
+
+        a {
+            color: black;
+        }
+        
+        a:hover {
+            color: #ddd;
+            background-color: black;
+        } 
+    }
+    
+    .book {
+        @extend %styleShareThree;
+        max-width: 400px;
+        margin: auto;
+        font-size: 1.5em;
+        letter-spacing: 2px;
+
+        h5 {
+            color: $bookColor;
+            margin-bottom: 0;
+        }
+        
+        .goodreads {
+            color: $bookColor;
+        }
+    }
+    
+    .review-box {
+        @extend %styleShareThree;
+        width: 30%;
+        margin: 5px;
+        font-family: $fontStackOne;
+        
+        p {
+            font-size: 1.2em;
+        }
+        
+        .rating {
+            color: #3d2802;
+        }
+    }
+
+    
+    .review-button {
+        margin: 10px 0;
+        border: none;
+        background-color: inherit;
+        font-size: 1.5em;
+    }
+    
+    .review-button:hover {
+        color: black;
+    }
+
+    .fof {
+        color: red;
+        font-size: 3em;
+        font-family: $fontStackOne;
+    }
+}
+
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+input {
+    @extend %styleShareTwo;
+    width: 80%;
+    padding: 1em;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 1.1em;
+    letter-spacing: $LetterSpc;
+    font-family: $fontStackOne;
+}
+
+button {
+    @extend %styleShareTwo;
+    padding: 0.5em 1.5em;
+    font-size: 1.2em;
+    font-family: $fontStackTwo;
+    color: blue;
+    cursor: pointer;
+}
+
+
+span {
+    margin: 0 10px;
+    font-size: 1.3em;
+}
+
+
+.modal{
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 536px;
+    background-color: #eee;
+    padding: 1em;
+    text-align: $textAlign;
+    box-sizing: border-box;
+    z-index: 7;
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    div {
+        margin: 10px 0 20px;
+    }
+
+    input,
+    textarea {
+        padding: 0.5em;
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    label {
+        font-size: 1.3em;
+        width: 100%;
+    }
+    
+    
+    button {
+        width: 40%;
+        padding: 1em;
+        margin: 0 8px;
+        font-size: 1.3em;
+        border: none;
+        background-color: inherit;
+    }
+
+    button:focus,
+    button:hover {
+        color: green;
+    }
+}
+
+.overlay {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #363636;
+    opacity: 0.8;
+}

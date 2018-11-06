@@ -16,6 +16,10 @@ You will have to register with [Goodreads](https://www.goodreads.com/api),if you
 Apply for an **API KEY** and set your environment variable on your machinge to **GOODREADS_KEY = KEY GOTTEN FROM GOODREADS**. 
 Without the **API KEY**, the application cannot make successful requests to goodreads API.
 
+### Sass
+The stylesheet for this application was written in **SASS**. Visit the [site](https://sass-lang.com/) for guide on how to install
+and use Sass.
+
 ## Implementation
 ### Registeration
 Users can register through the site's homepage and, if successful, will be redirected to the login page. Successful login
