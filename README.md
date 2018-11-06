@@ -40,6 +40,12 @@ containing the book's **title**, **author**, **publication date**, **ISBN value*
 
 A **404** error page is displayed for a book not found.
 
+## Built with
+* Python flask
+* PostgreSQL
+* SASS
+* Javascript
+
 ## Author
 Kayode Oluborode
 
