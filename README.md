@@ -13,7 +13,7 @@ Follow these [instructions](https://docs.cs50.net/web/2018/x/projects/1/project1
 This API was used to get access to review data for individual books. 
 You will have to register with [Goodreads](https://www.goodreads.com/api),if you have not. 
 
-Apply for an **API KEY** and set your environment variable on your machinge to **API_KEY = KEY GOTTEN FROM GOODREADS**. 
+Apply for an **API KEY** and set your environment variable on your machinge to **GOODREADS_KEY = KEY GOTTEN FROM GOODREADS**. 
 Without the **API KEY**, the application cannot make successful requests to goodreads API.
 
 ## Implementation
