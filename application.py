@@ -90,11 +90,10 @@ def books():
     
     elif 'searchBook' in request.form:
         book = request.form.get('search')
-        book = ' '.join(chr.capitalize() for chr in book.split())
     
         try:
-            books = db.execute("SELECT * FROM books WHERE isbn like :book OR title like :book OR author like :book",
-                {'book' : f'%{book}%'}).fetchall()
+            books = db.execute("SELECT * FROM books WHERE lower(isbn) like :book OR lower(title) like :book OR lower(author) like :book",
+                {'book' : f'%{book.lower()}%'}).fetchall()
             db.commit()
         except:
             flash('Not connected to database')
@@ -148,7 +147,7 @@ def book(isbn):
         flash('Not connected to database')
         redirect(url_for('books'))
     
-    # Fetch data from Goodreads
+    # Fetch data from Goodreads 
     try:
         api_key = os.getenv("GOODREADS_KEY") #'4AcUrYrpY3jO72H6fnP8MQ'
         api_url = f'https://www.goodreads.com/book/review_counts.json?isbns={isbn}&key={api_key}'
